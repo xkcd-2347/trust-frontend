@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Template
+metadata:
+  name: trustconsole
+objects:
+  - apiVersion: cloud.redhat.com/v1alpha1
+    kind: Frontend
+    metadata:
+      name: trust
+    spec:
+      envName: ${ENV_NAME}
+      title: Trusted Content
+      deploymentRepo: TBD
+      frontend:
+        paths:
+          - /apps/trust
+      image: ${IMAGE}:${IMAGE_TAG}
+      navItems: 
+      - appId: trust
+        title: Trusted Content
+        href: "/staging/trust"
+      module:
+        manifestLocation: "/apps/trust/fed-mods.json"
+        modules:
+          - id: "trust"
+            module: "./RootApp"
+            routes: 
+            - pathname: "/staging/trust"
+
+parameters:
+  - name: ENV_NAME
+    required: true
+  - name: IMAGE_TAG
+    required: true
+  - name: IMAGE
+    value: TBD

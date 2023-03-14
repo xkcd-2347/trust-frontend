@@ -4,10 +4,42 @@ import { InvalidObject } from '@redhat-cloud-services/frontend-components/Invali
 
 import { Bullseye, Spinner } from '@patternfly/react-core';
 
-const SamplePage = lazy(
+const PackagePage = lazy(
   () =>
     import(
-      /* webpackChunkName: "SamplePage" */ './Routes/SamplePage/SamplePage'
+      /* webpackChunkName: "PackagePage" */ './Routes/PackagePage/PackagePage'
+    )
+);
+
+const VulnPage = lazy(
+  () => import(/* webpackChunkName: "VulnPage" */ './Routes/VulnPage/VulnPage')
+);
+
+const TutorialsPage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "TutorialsPage" */ './Routes/TutorialsPage/TutorialsPage'
+    )
+);
+
+const TutorialPage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "TutorialPage" */ './Routes/TutorialPage/TutorialPage'
+    )
+);
+
+const SearchPage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "SearchPage" */ './Routes/SearchPage/SearchPage'
+    )
+);
+
+const OverviewPage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "OverviewPage" */ './Routes/OverviewPage/OverviewPage'
     )
 );
 const OopsPage = lazy(
@@ -31,7 +63,12 @@ export const Routes = () => (
     <RouterRoutes>
       <Route path="no-permissions" element={<NoPermissionsPage />} />
       <Route path="oops" element={<OopsPage />} />
-      <Route path="/" element={<SamplePage />} />
+      <Route path="tutorial" element={<TutorialsPage />} />
+      <Route path="tutorial/:id" element={<TutorialPage />} />
+      <Route path="package/:id" element={<PackagePage />} />
+      <Route path="vuln/:id" element={<VulnPage />} />
+      <Route path="search" element={<SearchPage />} />
+      <Route path="/" element={<OverviewPage />} />
       {/* Finally, catch all unmatched routes */}
       <Route path="*" element={<InvalidObject />} />
     </RouterRoutes>

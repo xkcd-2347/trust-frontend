@@ -19,7 +19,7 @@ const SampleComponent = lazy(
   () => import('../../Components/SampleComponent/sample-component')
 );
 
-import './sample-page.scss';
+import './tutorials-page.scss';
 import AppLink from '../../Components/AppLink';
 
 /**
@@ -29,7 +29,7 @@ import AppLink from '../../Components/AppLink';
  * https://reactjs.org/docs/components-and-props.html
  * https://medium.com/@thejasonfile/dumb-components-and-smart-components-e7b33a698d43
  */
-const SamplePage = () => {
+const TutorialsPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -49,43 +49,25 @@ const SamplePage = () => {
   return (
     <React.Fragment>
       <PageHeader>
-        <PageHeaderTitle title="Sample Insights App" />
-        <p> This is page header text </p>
+        <PageHeaderTitle title="Tutorials" />
+        <p> Tutorial! </p>
       </PageHeader>
       <Main>
         <Stack hasGutter>
           <StackItem>
             <Title headingLevel="h2" size="3xl">
-              {' '}
-              Alerts{' '}
+              <AppLink to="tutorial/1">Tutorial 1</AppLink>
             </Title>
-            <Button variant="primary" onClick={handleAlert}>
-              {' '}
-              Dispatch alert{' '}
-            </Button>
           </StackItem>
           <StackItem>
-            <Suspense fallback={<Spinner />}>
-              <SampleComponent />
-            </Suspense>
+            <Title headingLevel="h2" size="3xl">
+              <AppLink to="tutorial/2">Tutorial 2</AppLink>
+            </Title>
           </StackItem>
           <StackItem>
-            <Stack hasGutter>
-              <StackItem>
-                <Title headingLevel="h2" size="3xl">
-                  {' '}
-                  Links{' '}
-                </Title>
-              </StackItem>
-              <StackItem>
-                <AppLink to="/oops"> How to handle 500s in app </AppLink>
-              </StackItem>
-              <StackItem>
-                <AppLink to="/no-permissions">
-                  How to handle 403s in app
-                </AppLink>
-              </StackItem>
-            </Stack>
+            <Title headingLevel="h2" size="3xl">
+              <AppLink to="tutorial/3">Tutorial 3</AppLink>
+            </Title>
           </StackItem>
         </Stack>
       </Main>
@@ -93,4 +75,4 @@ const SamplePage = () => {
   );
 };
 
-export default SamplePage;
+export default TutorialsPage;
