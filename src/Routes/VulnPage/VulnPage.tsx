@@ -2,11 +2,11 @@ import React, { Suspense, lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import {
-  Button,
+  Button, Grid, GridItem,
   Spinner,
   Stack,
-  StackItem,
-  Title,
+  StackItem, Tab, Tabs, TabTitleText,
+  Title
 } from '@patternfly/react-core';
 import { Main } from '@redhat-cloud-services/frontend-components/Main';
 import {
@@ -52,7 +52,30 @@ const VulnPage = () => {
         <PageHeaderTitle title="Vulnerability" />
         <p> A single Vulnerability! </p>
       </PageHeader>
-      <Main> </Main>
+      <Main>
+        <Grid>
+          <GridItem span={8}>
+            <Title headingLevel="h1">Vulnerability long name</Title>
+            <Title headingLevel="h2">CVE-867-5309</Title>
+            <Grid hasGutter>
+              <GridItem span={6}>
+                <Title headingLevel="h3">Published 29 Oct, 1973</Title>
+              </GridItem>
+              <GridItem span={6}>
+                <Title headingLevel="h3">Updated 31 Oct, 1992</Title>
+              </GridItem>
+              <GridItem>
+                [link to prodsec CVE/advisory page]
+              </GridItem>
+              <GridItem>
+              </GridItem>
+            </Grid>
+          </GridItem>
+          <GridItem span={4}>
+            RHS
+          </GridItem>
+        </Grid>
+      </Main>
     </React.Fragment>
   );
 };

@@ -7,6 +7,11 @@ import {
   Stack,
   StackItem,
   Title,
+  Grid,
+  GridItem,
+  Card,
+  CardTitle,
+  CardBody,
 } from '@patternfly/react-core';
 import { Main } from '@redhat-cloud-services/frontend-components/Main';
 import {
@@ -53,6 +58,35 @@ const OverviewPage = () => {
         <p> Overview </p>
       </PageHeader>
       <Main>
+        <Grid hasGutter>
+          <GridItem span={12}>
+            <Card>
+              <CardBody>
+                Upload an SBOM etc
+              </CardBody>
+            </Card>
+          </GridItem>
+          <GridItem span={6}>
+            <Card>
+              <CardTitle>Get Started</CardTitle>
+            </Card>
+          </GridItem>
+          <GridItem span={6} rowSpan={2}>
+            <Card>
+              <CardTitle> Why Trust Red Hat? </CardTitle>
+            </Card>
+          </GridItem>
+          <GridItem span={6}>
+            <Card>
+              <CardTitle> Subscribe </CardTitle>
+              <CardBody>
+                Large enterprises to single developers, we have the right subscription for you.
+              </CardBody>
+            </Card>
+
+          </GridItem>
+        </Grid>
+        {/*
         <Stack hasGutter>
           <StackItem>
             <Title headingLevel="h2" size="3xl">
@@ -94,6 +128,7 @@ const OverviewPage = () => {
             </Stack>
           </StackItem>
         </Stack>
+        */}
       </Main>
     </React.Fragment>
   );
