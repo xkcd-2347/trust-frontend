@@ -32,7 +32,10 @@
     "react-router-dom": "^6.3.0",
     "redux": "4.2.0",
     "redux-logger": "3.0.6",
-    "redux-promise-middleware": "6.1.2"
+    "redux-promise-middleware": "6.1.2",
+    "redux-thunk": "2.4.2",
+    "reduce-reducers": "1.0.4",
+    "packageurl-js": "1.0.2"
   },
   "devDependencies": {
     "@babel/core": "7.14.0",

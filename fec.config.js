@@ -12,6 +12,16 @@ module.exports = {
    */
   plugins: [],
   _unstableHotReload: process.env.HOT === 'true',
+  customProxy: [
+    {
+      context: ['/api'],
+      target: 'http://127.0.0.1:8081/api',
+      pathRewrite: { '^/api': '' },
+      secure: true,
+      changeOrigin: false,
+      proxyVerbose: true,
+    },
+  ],
   moduleFederation: {
 /*
 */

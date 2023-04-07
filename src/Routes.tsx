@@ -7,7 +7,7 @@ import { Bullseye, Spinner } from '@patternfly/react-core';
 const PackagePage = lazy(
   () =>
     import(
-      /* webpackChunkName: "PackagePage" */ './Routes/PackagePage/PackagePage'
+      /* webpackChunkName: "InventoryPage" */ './Routes/PackagePage/PackagePage'
     )
 );
 
@@ -52,6 +52,13 @@ const NoPermissionsPage = lazy(
     )
 );
 
+const InventoryPage = lazy (
+  () =>
+    import(
+      /* webpackChunkName: "InventoryPage" */ './Routes/InventoryPage/InventoryPage'
+      )
+)
+
 export const Routes = () => (
   <Suspense
     fallback={
@@ -65,7 +72,8 @@ export const Routes = () => (
       <Route path="oops" element={<OopsPage />} />
       <Route path="tutorial" element={<TutorialsPage />} />
       <Route path="tutorial/:id" element={<TutorialPage />} />
-      <Route path="package/:id" element={<PackagePage />} />
+      <Route path="inventory" element={<InventoryPage />} />
+      <Route path="package/:purl" element={<PackagePage />} />
       <Route path="vuln/:id" element={<VulnPage />} />
       <Route path="search" element={<SearchPage />} />
       <Route path="/" element={<OverviewPage />} />
