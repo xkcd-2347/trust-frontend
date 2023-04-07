@@ -11,6 +11,7 @@ import {
   Tab,
   TabTitleText,
   Tabs,
+  TextInput,
   Title,
 } from '@patternfly/react-core';
 import { Main } from '@redhat-cloud-services/frontend-components/Main';
@@ -80,31 +81,62 @@ const InventoryPage = () => {
     setActiveTabKey(tabIndex);
   };
 
+  const [filter, setFilter] = React.useState<string>('');
+  const [filteredInventory, setFilteredInventory] = React.useState<any>([]);
+
+  const doFilter = (input: any) => {
+    setFilter(input);
+  };
+
+  useEffect(() => {
+    setFilteredInventory(
+      inventory
+        .sort((left: any, right: any) => {
+          if (left.purl == right.purl) {
+            return 0;
+          } else if (left.purl < right.purl) {
+            return -1;
+          } else {
+            return 1;
+          }
+        })
+        .filter((each: any) => {
+          return each.purl.includes(filter);
+        })
+    );
+  }, [filter, inventory]);
+
   //console.log('dependencies: ', dependencies);
   //console.log('dependants: ', dependants);
+
+  console.log('redraw filtered', filteredInventory.length);
 
   return (
     <React.Fragment>
       <PageHeader>
-        <PageHeaderTitle title="Package" />
-        <p> A single Trusted Content Package! </p>
+        <PageHeaderTitle title="Inventory" />
       </PageHeader>
       <Main>
         <Grid>
           <GridItem span={8}>
-            {/*<Title headingLevel='h1'>Package long name</Title>*/}
-            <Title headingLevel="h2">Inventory</Title>
-            <TableComposable>
-              <Thead>
-                <Th>Upstream</Th>
-                <Th>Trusted</Th>
-              </Thead>
+            <TextInput onChange={doFilter} />
+          </GridItem>
+          <GridItem span={8}>
+            <TableComposable variant="compact">
               <Tbody>
-                {inventory.map((each: any) => {
+                {filteredInventory.map((each: any) => {
                   return (
                     <Tr key={each.purl}>
-                      <Td>{each.purl}</Td>
-                      <Td>{each.trustedVersions[0].purl}</Td>
+                      <Td>
+                        <AppLink
+                          to={
+                            '/package/' +
+                            encodeURIComponent(each.trustedVersions[0].purl)
+                          }
+                        >
+                          {each.trustedVersions[0].purl}
+                        </AppLink>
+                      </Td>
                     </Tr>
                   );
                 })}
